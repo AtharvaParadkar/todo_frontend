@@ -16,7 +16,7 @@ class ApiService {
   Future<String?> register (String username, String password) async {
     final response = await http.post(
       Uri.parse("$baseUrl/auth/register"),
-      headers: {"content/type" : "application/json"},
+      headers: {"Content-Type" : "application/json"},
       body: jsonEncode({"username" : username, "password" : password})
     );
 
@@ -30,7 +30,7 @@ class ApiService {
   Future<String?> login (String username, String password) async {
     final response = await http.post(
       Uri.parse("$baseUrl/auth/login"),
-      headers: {"content/type" : "application/json"},
+      headers: {"Content-Type" : "application/json"},
       body: jsonEncode({"username" : username, "password" : password})
     );
 
@@ -61,7 +61,7 @@ class ApiService {
       Uri.parse("$baseUrl/todos"),
       headers: {
         "Authorization" : "Bearer $token",
-        "content/type" : "application.json",
+        "Content-Type" : "application.json",
       },
       body: jsonEncode({"text" : text})
     );
