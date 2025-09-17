@@ -13,7 +13,7 @@ class ApiService {
 
   final storage = FlutterSecureStorage();
 
-  Future register (String username, String password) async {
+  Future<String?> register (String username, String password) async {
     final response = await http.post(
       Uri.parse("$baseUrl/auth/register"),
       headers: {"content/type" : "application/json"},
@@ -22,14 +22,12 @@ class ApiService {
 
     if (response.statusCode == 200) {
       log("Register response body ${response.body}");
-      return showToast("Register Successful!!");
-    } else {
-      log("Error ${response.body}");
-      return showToast("error in register");
+      return "Register Successful!!";
     }
+    return "error ${response.body}";
   }
 
-  Future login (String username, String password) async {
+  Future<String?> login (String username, String password) async {
     final response = await http.post(
       Uri.parse("$baseUrl/auth/login"),
       headers: {"content/type" : "application/json"},
@@ -38,11 +36,9 @@ class ApiService {
 
     if (response.statusCode == 200) {
       log("Login response body ${response.body}");
-      return showToast("Login Successful!!");
-    } else {
-      log("Error ${response.body}");
-      return showToast("error in login");
+      return "Login Successful!!";
     }
+    return "error ${response.body}";
   }
 
   Future<List<dynamic>> getTodos () async {
